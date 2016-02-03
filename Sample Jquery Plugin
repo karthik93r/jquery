@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+ <head>
+  <title> Fancy select box </title>
+  <meta name="Generator" content="EditPlus">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <script src="jquery.js"></script>
+  <style>
+	.fancy-select-box {
+		border: 2px solid #CE06F9;
+		border-radius:5px;
+		background:#CC99FF;
+		width: 300px;
+		position: relative;
+		height: 40px;
+		font-size:19px;
+		color:white;
+	}
+	.fancy-select-box ul {
+		display: none;
+		background: #ffffff;
+		border: 2px solid #ca98ff;
+		border-radius:3px;
+		position: absolute;
+		width: 86%;
+		z-index: 1;
+		list-style:none;
+		color:black;
+	}
+	.fancy-select-box ul li{
+		margin-left:-40px;
+		padding:2px;
+	}
+	.fancy-select-box ul li:hover {
+		background: #B771FF;
+	}
+  </style>
+  <script>
+	$(document).ready(function(){
+		$(window).load(function() {
+			var div = '<div class="fancy-select-box">	<div>--Select--</div>	<ul></ul>	</div>';
+			$parent_obj = $('.fancy');
+			$parent_obj.each(function() {
+				var li = '';
+				$(this).children('option').each(function() {
+					li += '<li value="'+$(this).val()+'">'+$(this).text()+'</li>'
+				});
+				$(this).after(div).next().find('ul').append(li);
+			});
+		});
+
+		$('body').on('mouseenter','.fancy-select-box',function(){
+			$(this).find('ul').show();
+		});
+		$('body').on('mouseleave','.fancy-select-box',function(){
+			$(this).find('ul').hide();
+		});
+		$('body').on('click','.fancy-select-box ul li',function(){
+			$(this).parent().prev().text($(this).text());
+			$(this).parent().parent().prev().val($(this).val());
+		});
+
+	});
+  </script>
+ </head>
+
+ <body>
+	<select class="fancy">
+		<option value="1">Toyato</option>
+		<option value="2">Honda</option>
+		<option value="3">Audi</option>
+		<option value="4">BMW</option>
+		<option value="5">Jaguar</option>
+	</select>
+
+	<select class="fancy">
+		<option value="1">Toyato</option>
+		<option value="2">Honda</option>
+		<option value="3">Audi</option>
+		<option value="4">BMW</option>
+		<option value="5">Jaguar</option>
+	</select>
+
+
+	<select class="fancy">
+		<option value="1">Apple</option>
+		<option value="2">Banana</option>
+		<option value="3">Mango</option>
+		<option value="4">Pinapple</option>
+		<option value="5">Strawberry</option>
+	</select>
+	
+	
+	<!-- <div class="fancy-select-box">
+		<div><div>
+		<ul style="display:none">
+			<li value="1">Toyato</li>
+			<li value="1">Toyato</li>
+		</ul>
+	<div> -->
+
+ </body>
+
+
+</html>
